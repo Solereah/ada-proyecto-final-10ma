@@ -1,6 +1,6 @@
 import { Box, Flex, useColorModeValue, Image, Heading } from "@chakra-ui/react"
 
-import ProfileCard from "./Components/ProfileCard"
+import { ProfileLogged } from "../ProfileLogged"
 
 const Account = () => {
   return (
@@ -23,7 +23,7 @@ const Account = () => {
           Que gusto tenerte de vuelta
         </Heading>
       </Box>
-      <ProfileCard />
+      <ProfileLogged />
 
       <Box>
         <Image src="../../assets/Icons/mate.png" />

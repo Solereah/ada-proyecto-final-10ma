@@ -8,6 +8,9 @@ import { Shop } from "./pages/Shop"
 import { ProductDetail } from "./pages/ProductDetail"
 import { Cart } from "./pages/Cart"
 import { Account } from "./pages/Account"
+import { AboutUs } from "./pages/AboutUs"
+import { CheckoutCart } from "./pages/CheckoutCart"
+import { Orders } from "./pages/Orders"
 
 const App = () => {
   return (

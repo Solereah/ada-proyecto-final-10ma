@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 
-import useUser from "../../../Hooks/useUser"
+import { useUser } from "../../hooks/useUser"
 
 const ProfileLogged = () => {
   const { user } = useUser()

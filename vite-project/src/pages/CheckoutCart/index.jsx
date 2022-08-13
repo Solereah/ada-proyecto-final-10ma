@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react"
 
 import {
   Table,
@@ -13,62 +13,63 @@ import {
   Button,
   Stack,
   Spinner,
-} from '@chakra-ui/react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+} from "@chakra-ui/react"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
-import FormsModal from '../../Components/FormsModal'
-import useCart from '../../Hooks/useCart'
-import useUser from '../../Hooks/useUser'
-import CheckoutDetail from './Components/CheckoutDetail'
+import { FormsModal } from "../../components/FormsModal"
+import { useCart } from "../../hooks/useCart"
+import { useUser } from "../../hooks/useUser"
+import { CheckoutDetail } from "./components/CheckoutDetail"
+
 const CheckoutCart = () => {
   const { totalCart, cart, emptyCart } = useCart()
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { user } = useUser()
   const toast = useToast({
-    variant: 'top-accent',
+    variant: "top-accent",
     isClosable: true,
     duration: 6000,
   })
   const navigate = useNavigate()
 
   const handleOnClick = async () => {
-    setLoading(true)
+    setIsLoading(true)
     if (!user) {
       return <FormsModal />
     } else {
       try {
         await axios.post(
-          'https://strapiecommerce-production-b394.up.railway.app/api/orders',
+          "https://chacra-mates-production.up.railway.app/api/orders",
           {
             data: { Item: cart, users_permissions_users: user.id },
           },
           {
             headers: {
-              Accept: '*/*',
-              'Content-Type': 'application/json',
+              Accept: "*/*",
+              "Content-Type": "application/json",
               Authorization: `Bearer ${user.jwt}`,
             },
           }
         )
 
         toast({
-          title: 'Compra existosa! A disfrutar de unos verdes',
-          status: 'success',
+          title: "Compra existosa! A disfrutar de unos verdes",
+          status: "success",
         })
         emptyCart()
-        navigate('/orders')
+        navigate("/orders")
       } catch (error) {
         toast({
-          title: 'Error',
-          description: 'Poné la pava mientras esperas, algo salió mal',
-          status: 'error',
+          title: "Error",
+          description: "Poné la pava mientras esperas, algo salió mal",
+          status: "error",
         })
       }
     }
-    setLoading(false)
+    setIsLoading(false)
   }
-  if (loading) {
+  if (isLoading) {
     return (
       <Spinner
         thickness="4px"
@@ -122,4 +123,4 @@ const CheckoutCart = () => {
   )
 }
 
-export default CheckoutCart
+export { CheckoutCart }

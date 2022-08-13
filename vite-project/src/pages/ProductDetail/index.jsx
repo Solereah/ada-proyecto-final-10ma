@@ -15,8 +15,8 @@ import {
 import { MdLocalShipping } from "react-icons/md"
 import { useParams } from "react-router-dom"
 
-import useCart from "../../Hooks/useCart"
-import useGet from "../../Hooks/useGet"
+import { useCart } from "../../hooks/useCart"
+import { useGet } from "../../hooks/useGet"
 
 const ProductDetail = () => {
   const { id } = useParams()
