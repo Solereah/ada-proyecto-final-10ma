@@ -14,16 +14,17 @@ const localStorageEffect =
         : localStorage.setItem(key, JSON.stringify(newValue))
     })
   }
-export const authState = atom({
-  key: "authState",
+const authState = atom({
+  key: "user",
   default: null,
   effects: [localStorageEffect("user")],
 })
 
-export const isUserLoggedState = selector({
-  key: "isUserLoggedState",
+const isUserLogged = selector({
+  key: "userLogged",
   get: ({ get }) => {
     const user = get(authState)
     return user
   },
 })
+export { authState, isUserLogged }

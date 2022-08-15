@@ -121,7 +121,12 @@ const Carousel = () => {
                 <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}>
                   {card.title}
                 </Heading>
-                <Text fontSize={{ base: "md", lg: "lg" }} color="GrayText">
+                <Text
+                  fontSize={{ base: "md", lg: "lg" }}
+                  color="black"
+                  fontWeight="600"
+                  fontStyle="italic"
+                >
                   {card.text}
                 </Text>
               </Stack>

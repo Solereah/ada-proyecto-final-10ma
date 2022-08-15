@@ -7,7 +7,7 @@ const Products = () => {
     <Box>
       {isLoading && <Spinner mx="50%" my="50px" size="xl" />}
       {isLoading || (
-        <SimpleGrid>
+        <SimpleGrid minChildWidth="300px" spacing="30px" w="60%" mx="auto">
           {products &&
             products.map((product) => {
               return <CardProduct info={product} key={product.id} />

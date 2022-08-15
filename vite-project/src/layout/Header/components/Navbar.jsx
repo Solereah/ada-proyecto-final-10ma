@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react"
 import { NavLink as ReachLink } from "react-router-dom"
 
-import { FormsModal } from "../../../components/FormsModal"
+import { FormsModal } from "../../../Components/FormsModal"
 import { Cart } from "../../../pages/Cart"
 const Links = [
   { label: "Tienda", url: "/shop" },
@@ -64,10 +64,9 @@ const Navbar = () => {
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </Flex>
-            <Cart />
           </HStack>
         </HStack>
-
+        <Cart />
         <FormsModal />
       </Flex>
 

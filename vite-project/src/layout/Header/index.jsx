@@ -11,7 +11,7 @@ const Header = () => {
             ChacraMates
           </Flex>
         </Link>
-        <Navbar border="1px solid red" />
+        <Navbar />
       </Flex>
     </Box>
   )

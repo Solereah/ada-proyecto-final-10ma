@@ -21,12 +21,6 @@ const Login = () => {
       bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Link color={"blue.400"}>features</Link> ✌️
-          </Text>
-        </Stack>
         <Box
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
@@ -36,9 +30,9 @@ const Login = () => {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email-login" />
             </FormControl>
-            <FormControl id="password">
+            <FormControl id="password-login">
               <FormLabel>Password</FormLabel>
               <Input type="password" />
             </FormControl>
