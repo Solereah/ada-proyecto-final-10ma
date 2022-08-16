@@ -136,7 +136,7 @@ const CheckoutCart = () => {
           <Divider />
         </Stack>
         <Stack spacing={4} width={"50%"} alignItems="center">
-          <Text textAlign="center" mt="20px">
+          <Text textAlign="center" mt="5px">
             Por el momento no estamos haciendo envíos, disculpas por las
             molestias ocasionadas.
           </Text>
@@ -179,9 +179,11 @@ const CheckoutCart = () => {
                 </Tbody>
                 <Tfoot>
                   <Tr>
-                    <Th>Total a pagar</Th>
+                    <Th fontSize="1em">Total a pagar</Th>
 
-                    <Th isNumeric>${totalCart * 1.21}</Th>
+                    <Th fontSize="1em" isNumeric>
+                      ${totalCart * 1.21}
+                    </Th>
                   </Tr>
                 </Tfoot>
               </Table>
