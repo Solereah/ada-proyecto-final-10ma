@@ -59,7 +59,7 @@ const OrderCard = ({ order }) => {
 
             <ListItem>
               <ListIcon as={CheckIcon} color="green.400" />
-              Fecha de compra :
+              Fecha de compra:
               {new Date(order.attributes.createdAt).toLocaleDateString()}
             </ListItem>
           </List>

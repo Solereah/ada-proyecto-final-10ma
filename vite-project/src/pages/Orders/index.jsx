@@ -1,6 +1,6 @@
 import { SimpleGrid, Spinner } from "@chakra-ui/react"
 
-import { useGet } from "../../Hooks/useGet"
+import { useGet } from "../../hooks/useGet"
 import { OrderCard } from "./components/OrderCard"
 const Orders = () => {
   const { data: orders, loading } = useGet("orders")

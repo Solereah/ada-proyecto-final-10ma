@@ -1,18 +1,25 @@
 import { useState } from "react"
 
 import {
-  Table,
-  Tbody,
+  useToast,
+  Spinner,
+  Stack,
+  Flex,
   Box,
-  Th,
+  Text,
+  Heading,
+  Divider,
+  Input,
+  Button,
+  Table,
   Thead,
+  Tbody,
+  Tfoot,
   Tr,
+  Th,
+  Td,
   TableCaption,
   TableContainer,
-  useToast,
-  Button,
-  Stack,
-  Spinner,
 } from "@chakra-ui/react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
@@ -23,7 +30,7 @@ import { useUser } from "../../hooks/useUser"
 import { CheckoutDetail } from "./components/CheckoutDetail"
 
 const CheckoutCart = () => {
-  const { totalCart, cart, emptyCart } = useCart()
+  const { cart, totalCart } = useCart()
   const [isLoading, setIsLoading] = useState(false)
   const { user } = useUser()
   const toast = useToast({
@@ -83,43 +90,116 @@ const CheckoutCart = () => {
   }
 
   return (
-    <Box>
-      <TableContainer>
-        <Table variant="simple">
-          <TableCaption />
-          <Thead>
-            <Tr>
-              <Th />
-              <Th>Detalle</Th>
-              <Th>Precio unitario</Th>
-              <Th>Cantidad</Th>
-              <Th>Subtotal</Th>
-              <Th />
-            </Tr>
-          </Thead>
-          <Tbody>
+    <>
+      <Flex py={6} px={5} min={"100vh"}>
+        <Stack spacing={4} width={"50%"} direction={"column"}>
+          <Stack
+            p={5}
+            alignItems={"center"}
+            justifyContent={{
+              base: "flex-start",
+              md: "space-around",
+            }}
+            direction={{
+              base: "column",
+              md: "row",
+            }}
+          >
+            <Stack
+              width={{
+                base: "100%",
+                md: "40%",
+              }}
+              textAlign={"center"}
+            >
+              <Heading size={"lg"}>
+                Detalle de <Text color="green.500">Tú carrito</Text>
+              </Heading>
+            </Stack>
+            <Stack
+              width={{
+                base: "100%",
+                md: "60%",
+              }}
+            >
+              <Text textAlign={"center"}>
+                Estás a punto de disfrutar unos ricos mates.
+              </Text>
+            </Stack>
+          </Stack>
+          <Divider />
+          <Box>
             {cart.map((info) => (
               <CheckoutDetail product={info} key={`cartProduct${info.id}`} />
             ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
+          </Box>
+          <Divider />
+        </Stack>
+        <Stack spacing={4} width={"50%"} alignItems="center">
+          <Text textAlign="center" mt="20px">
+            Por el momento no estamos haciendo envíos, disculpas por las
+            molestias ocasionadas.
+          </Text>
+          <Stack w="50%" direction="row">
+            <Input
+              variant="filled"
+              placeholder="Ingrese codigo de descuento"
+              type="text"
+              name="descount"
+            />
+            <Button colorScheme="teal" variant="outline" type="submit">
+              Enviar
+            </Button>
+          </Stack>
+          <Stack>
+            <TableContainer mt="20px">
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th>Detalle</Th>
+                    <Th isNumeric>Costo</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td>Descuento</Td>
 
-      <Stack>
-        <Box>Total:</Box>
-        <Box>{totalCart}</Box>
-      </Stack>
+                    <Td isNumeric>$0</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Subtotal</Td>
 
-      <Stack direction="row" spacing={4} justifyContent="flex-end">
-        <Button
-          colorScheme="brand.700"
-          variant="outline"
-          onClick={handleOnClick}
-        >
-          Finalizar Compra
-        </Button>
-      </Stack>
-    </Box>
+                    <Td isNumeric>${totalCart}</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Impuestos</Td>
+
+                    <Td isNumeric>${(totalCart * 21) / 100}</Td>
+                  </Tr>
+                </Tbody>
+                <Tfoot>
+                  <Tr>
+                    <Th>Total a pagar</Th>
+
+                    <Th isNumeric>${totalCart * 1.21}</Th>
+                  </Tr>
+                </Tfoot>
+              </Table>
+            </TableContainer>
+            <Box w="80%" pt={7}>
+              <Button
+                w="full"
+                colorScheme="green"
+                onClick={handleOnClick}
+                isLoading={isLoading}
+              >
+                Finalizar compra
+              </Button>
+            </Box>
+          </Stack>
+        </Stack>
+      </Flex>
+    </>
   )
 }
 

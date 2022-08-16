@@ -27,7 +27,7 @@ const Cart = () => {
   const total = cart.length
 
   return (
-    <Flex boder="1px solid red">
+    <Flex>
       <Flex>
         <IconButton
           ref={btnRef}
@@ -52,7 +52,7 @@ const Cart = () => {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Mi Carrito</DrawerHeader>
-          {!!cart || (
+          {!!cart.length || (
             <DrawerBody>
               <Link to="/shop">
                 <Flex flexDirection="column" alignItems="center">
@@ -64,8 +64,8 @@ const Cart = () => {
               </Link>
             </DrawerBody>
           )}
-          {!!cart && (
-            <Flex flexDirection="column">
+          {!!cart.length && (
+            <Flex flexDirection="column" justifyContent="center">
               <DrawerBody>
                 {cart.map((product) => (
                   <CartProducts
@@ -74,23 +74,25 @@ const Cart = () => {
                   />
                 ))}
               </DrawerBody>
+              <Flex
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Button colorScheme="red" onClick={emptyCart}>
+                  Vaciar carrito
+                </Button>
 
-              <DrawerFooter>
-                <Flex flexDirection={"column"} alignItems={"center"}>
-                  <Button colorScheme="red" onClick={emptyCart}>
-                    Vaciar carrito
+                <Box display={"flex"} justifyContent={"space-evenly"}>
+                  <Box>Total:</Box>
+                  <Box>${totalCart}</Box>
+                </Box>
+                <Link to="/checkoutCart">
+                  <Button variant="outline" mr={3} onClick={onClose}>
+                    Continuar compra
                   </Button>
-                  <Box display={"flex"} justifyContent={"space-evenly"}>
-                    <Box>Total:</Box>
-                    <Box>${totalCart}</Box>
-                  </Box>
-                  <Link to="/checkoutCart">
-                    <Button variant="outline" mr={3} onClick={onClose}>
-                      Continuar compra
-                    </Button>
-                  </Link>
-                </Flex>
-              </DrawerFooter>
+                </Link>
+              </Flex>
             </Flex>
           )}
         </DrawerContent>

@@ -1,8 +1,16 @@
-import { Box, Button, Image, List, ListItem, Stack } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Divider,
+  Image,
+  List,
+  ListItem,
+  Stack,
+} from "@chakra-ui/react"
 
 import { useCart } from "../../../hooks/useCart"
 
-const CheckoutDetail = ({ product }) => {
+const Prueba2 = ({ product }) => {
   const { deleteItemCart } = useCart()
 
   return (
@@ -50,4 +58,4 @@ const CheckoutDetail = ({ product }) => {
   )
 }
 
-export { CheckoutDetail }
+export { Prueba2 }
