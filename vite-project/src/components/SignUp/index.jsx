@@ -22,7 +22,7 @@ import * as yup from "yup"
 
 const userSchema = yup
   .object({
-    name: yup.string().required("Debe ingresar su nombre completo"),
+    username: yup.string().required("Debe ingresar su nombre completo"),
     email: yup
       .string()
       .email("No cumple con el formato de email")

@@ -9,12 +9,10 @@ import {
   Button,
 } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
-import { useRecoilValue } from "recoil"
-import { authState } from "../../recoil/userAtom"
+import { useUser } from "../../hooks/useUser"
 
 const ProfileLogged = () => {
-  const { user } = useRecoilValue(authState)
-
+  const { signOut, user } = useUser()
   return (
     <Center py={6}>
       <Stack
@@ -51,7 +49,9 @@ const ProfileLogged = () => {
             {user.email}
           </Text>
           <Link to="/shop">
-            <Button bg={"green.500"}>Volver por unos verdes</Button>
+            <Button bg={"green.500"} onClick={() => signOut(null)}>
+              Volver por unos verdes
+            </Button>
           </Link>
         </Stack>
       </Stack>

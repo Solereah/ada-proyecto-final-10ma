@@ -13,16 +13,15 @@ import {
   Flex,
 } from "@chakra-ui/react"
 import { Login } from "../Login"
-//import { useRecoilState } from "recoil"
-//import { isUserLogged } from "../../recoil/userAtom"
+import { useRecoilState } from "recoil"
+import { isUserLogged } from "../../recoil/userAtom"
 import { SignUp } from "../SignUp"
 import { ProfileLogged } from "../ProfileLogged"
 import { FaRegUser } from "react-icons/fa"
-import { useUser } from "../../hooks/useUser"
+
 const FormsModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  //const [user] = useRecoilState(isUserLogged)
-  const { user } = useUser()
+  const [user] = useRecoilState(isUserLogged)
 
   if (!user) {
     return (

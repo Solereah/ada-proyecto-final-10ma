@@ -25,9 +25,9 @@ const Account = () => {
       </Box>
       <ProfileLogged />
 
-      <Box>
-        <Image src="../../assets/Icons/mate.png" />
-      </Box>
+      {/*   <Box>
+        <Image src="" />
+      </Box> */}
     </Flex>
   )
 }
