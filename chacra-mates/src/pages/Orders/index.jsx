@@ -3,11 +3,11 @@ import { SimpleGrid, Spinner } from "@chakra-ui/react"
 import { useGet } from "../../hooks/useGet"
 import { OrderCard } from "./components/OrderCard"
 const Orders = () => {
-  const { data: orders, loading } = useGet("orders")
+  const { data: orders, isLoading } = useGet("orders")
 
   return (
     <>
-      {loading && (
+      {isLoading && (
         <Spinner
           thickness="4px"
           emptyColor="gray.200"
@@ -17,7 +17,7 @@ const Orders = () => {
           my="50px"
         />
       )}
-      {loading || (
+      {isLoading || (
         <SimpleGrid minChildWidth="200px" spacing="25px" mx="auto" w="70%">
           {orders &&
             orders.map((order) => {

@@ -16,8 +16,8 @@ import { Login } from "../Login"
 import { useRecoilState } from "recoil"
 import { isUserLogged } from "../../recoil/userAtom"
 import { SignUp } from "../SignUp"
-import { ProfileLogged } from "../ProfileLogged"
 import { FaRegUser } from "react-icons/fa"
+import { LoggedMenu } from "../LoggedMenu"
 
 const FormsModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -53,6 +53,6 @@ const FormsModal = () => {
       </Flex>
     )
   }
-  return <ProfileLogged />
+  return <LoggedMenu />
 }
 export { FormsModal }
