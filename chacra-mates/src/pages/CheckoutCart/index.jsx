@@ -31,7 +31,7 @@ import { useUser } from "../../hooks/useUser"
 import { CheckoutDetail } from "./components/CheckoutDetail"
 
 const CheckoutCart = () => {
-  const { cart, totalCart } = useCart()
+  const { cart, totalCart, emptyCart } = useCart()
   const [isLoading, setIsLoading] = useState(false)
   const { user } = useUser()
   const toast = useToast({

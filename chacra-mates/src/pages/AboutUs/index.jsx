@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
+import { NotFound } from "../NotFound"
 const AboutUs = () => {
-  return <Link to="/NotFound" />
+  return <NotFound />
 }
 
 export { AboutUs }
