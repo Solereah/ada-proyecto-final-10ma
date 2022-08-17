@@ -1,66 +1,111 @@
 import {
   Flex,
-  Box,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
-  HStack,
   InputRightElement,
+  FormErrorMessage,
   Stack,
   Button,
   Heading,
   Text,
-  useColorModeValue,
   Link,
 } from "@chakra-ui/react"
+import axios from "axios"
 import { useState } from "react"
+import { useUser } from "../../hooks/useUser"
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
+const userSchema = yup
+  .object({
+    name: yup.string().required("Debe ingresar su nombre completo"),
+    email: yup
+      .string()
+      .email("No cumple con el formato de email")
+      .required("Debe ingresar un email"),
+    password: yup
+      .string()
+      .required("La contraseña debe un mínimo de 8 caracteres")
+      .min(8),
+  })
+  .required()
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
+  const { signIn } = useUser()
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(userSchema),
+  })
+
+  const onSubmit = ({ name, email, password }) => {
+    axios
+      .post(
+        "https://chacra-mates-production.up.railway.app/api/auth/local/register",
+        {
+          username: name,
+          email,
+          password,
+        }
+      )
+      .then((response) => {
+        signIn(response.data.user)
+      })
+      .catch((error) => {
+        console.log("An error occurred:", error.response)
+      })
+  }
 
   return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+    <Flex>
+      <Stack>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
+            Registrate
           </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool features ✌️
+            para disfrutar de unos buenos mates ✌️
           </Text>
         </Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={8}
-        >
-          <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-            </HStack>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+
+        <Stack spacing={4}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl isInvalid={errors.name} isRequired>
+              <FormLabel htmlFor="name">Name</FormLabel>
+              <Input
+                type="text"
+                id="username"
+                name="name"
+                {...register("name", {
+                  required: "Ingrese su nombre completo",
+                })}
+              />
+              <FormErrorMessage>
+                {errors.name && errors.name.message}
+              </FormErrorMessage>
             </FormControl>
+            <FormControl isInvalid={errors.mail} isRequired>
+              <FormLabel htmlFor="email">Email address</FormLabel>
+              <Input
+                type="email"
+                id="email-signUp"
+                name="email"
+                {...register("email", {
+                  required: "Debe ingresar un formato de mail",
+                })}
+              />
+              <FormErrorMessage>
+                {errors.email && errors.email.message}
+              </FormErrorMessage>
+            </FormControl>
+
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
@@ -81,22 +126,24 @@ const SignUp = () => {
               <Button
                 loadingText="Submitting"
                 size="lg"
-                bg={"blue.400"}
+                bg={"green.400"}
                 color={"white"}
                 _hover={{
-                  bg: "blue.500",
+                  bg: "brand.700",
                 }}
+                isLoading={isSubmitting}
+                type="submit"
               >
                 Sign up
               </Button>
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user? <Link color={"green.400"}>Login</Link>
               </Text>
             </Stack>
-          </Stack>
-        </Box>
+          </form>
+        </Stack>
       </Stack>
     </Flex>
   )

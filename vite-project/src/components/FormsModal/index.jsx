@@ -27,12 +27,12 @@ const FormsModal = () => {
         <Button mt={4} onClick={onOpen} bg="none">
           <FaRegUser />
         </Button>
-        <Modal isOpen={isOpen} onClose={onClose} size="lg">
+        <Modal isOpen={isOpen} onClose={onClose} size="md">
           <ModalOverlay />
           <ModalContent>
             <ModalCloseButton />
 
-            <Tabs isFitted variant="enclosed" w="400px" boxShadow="lg">
+            <Tabs isFitted w="400px">
               <TabList mb="1em">
                 <Tab>Ingresar</Tab>
                 <Tab>Registrarse</Tab>
