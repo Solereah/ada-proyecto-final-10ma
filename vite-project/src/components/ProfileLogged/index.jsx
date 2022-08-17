@@ -9,11 +9,12 @@ import {
   Button,
 } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
-
-import { useUser } from "../../hooks/useUser"
+import { useRecoilValue } from "recoil"
+import { authState } from "../../recoil/userAtom"
 
 const ProfileLogged = () => {
-  const { user } = useUser()
+  const { user } = useRecoilValue(authState)
+
   return (
     <Center py={6}>
       <Stack

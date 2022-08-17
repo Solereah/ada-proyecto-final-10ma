@@ -8,8 +8,8 @@ import {
   FormControl,
   FormLabel,
   Select,
-} from '@chakra-ui/react'
-import { ImSearch } from 'react-icons/im'
+} from "@chakra-ui/react"
+import { ImSearch } from "react-icons/im"
 const Aside = ({
   setFilterTitle,
   setFilterCategory,
@@ -72,7 +72,7 @@ const Aside = ({
           <Heading as="h5" size="sm" mt="10" mb="1">
             Categorías
           </Heading>
-          <Select placeholder="Mates" onChange={handleOnChangeCategory}>
+          <Select placeholder="Categorias" onChange={handleOnChangeCategory}>
             <option value="mates">Mates</option>
             <option value="bombillas">Bombillas</option>
             <option value="termos">Termos</option>

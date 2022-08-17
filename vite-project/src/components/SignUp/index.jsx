@@ -81,7 +81,7 @@ const SignUp = () => {
               <FormLabel htmlFor="name">Name</FormLabel>
               <Input
                 type="text"
-                id="username"
+                id="name"
                 name="name"
                 {...register("name", {
                   required: "Ingrese su nombre completo",

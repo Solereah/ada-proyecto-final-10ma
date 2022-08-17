@@ -1,6 +1,6 @@
 import { Box, Flex, useColorModeValue, Image, Heading } from "@chakra-ui/react"
 
-import { ProfileLogged } from "../ProfileLogged"
+import { ProfileLogged } from "../../components/ProfileLogged"
 
 const Account = () => {
   return (
