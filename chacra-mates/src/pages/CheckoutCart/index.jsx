@@ -37,7 +37,7 @@ const CheckoutCart = () => {
   const toast = useToast({
     variant: "top-accent",
     isClosable: true,
-    duration: 6000,
+    duration: 6001,
   })
   const navigate = useNavigate()
 
